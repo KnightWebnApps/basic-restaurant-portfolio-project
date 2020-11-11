@@ -32,4 +32,10 @@ a {
   bottom: 10; */
   /* z-index: 1; */
 }
+
+@media (min-width: 600px) {
+  a {
+    display: none;
+  }
+}
 </style>
