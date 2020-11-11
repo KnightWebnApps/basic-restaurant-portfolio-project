@@ -5,7 +5,7 @@
         <h1>{{ vendor.name }}</h1>
         <p class="tagline">{{ vendor.tagline }}</p>
         <div class="call-to-action">
-          <NuxtLink to="/menu">Menu</NuxtLink>
+          <NuxtLink class="action-btn" to="/menu">Menu</NuxtLink>
           <a href="#feature">See More</a>
         </div>
       </div>
@@ -178,7 +178,6 @@ section {
 .img2 {
   column-span: span 2;
   margin-left: 15px;
-  /* justify-self: self-end; */
 }
 
 .hours-img {
@@ -207,6 +206,10 @@ a:hover {
 
 .call-to-action {
   margin-top: 3em;
+}
+
+.action-btn {
+  background-color: #fed047;
 }
 
 ul {
