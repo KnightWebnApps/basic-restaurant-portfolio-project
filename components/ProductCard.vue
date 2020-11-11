@@ -47,4 +47,8 @@ article span {
   margin-left: 5px;
   margin-bottom: 10px;
 }
+
+.avatar {
+  border-radius: 50%;
+}
 </style>

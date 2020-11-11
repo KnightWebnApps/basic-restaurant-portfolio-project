@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <header>
-      <div>
+      <div class="header-details">
         <h1>{{ vendor.name }}</h1>
         <p class="tagline">{{ vendor.tagline }}</p>
         <div class="call-to-action">
@@ -19,7 +19,7 @@
     <section class="details">
       <div>
         <h2>Hours</h2>
-        <ul>
+        <ul class="hours">
           <li v-for="date in vendor.hours" :key="date._key">
             <div class="day">{{ date.day.substring(0, 3) }}</div>
             <div>{{ date.startTime }} -</div>
@@ -27,7 +27,16 @@
           </li>
         </ul>
       </div>
-      <SanityImage :width="300" :height="400" :image="vendor.images[0]" />
+      <div class="gallery">
+        <SanityImage
+          v-for="(image, i) in vendor.images"
+          :key="image._key"
+          :width="(i + 1) * 100 === 100 ? 150 : (i + 1) * 100"
+          :height="400"
+          :image="image"
+          :class="'hours-img ' + `img${i}`"
+        />
+      </div>
     </section>
     <section id="feature" class="featured">
       <h2>Featured Dishes</h2>
@@ -42,6 +51,8 @@
 </template>
 
 <script>
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import groq from 'groq'
 import sanityClient from '~/sanityClient'
 import SanityImage from '~/components/SanityImage'
@@ -61,6 +72,38 @@ export default {
     return await sanityClient.fetch(query)
   },
   transition: 'bounce',
+  mounted() {
+    gsap.registerPlugin(ScrollTrigger)
+    gsap.to('.header-details', {
+      opacity: 1,
+      delay: 1,
+      duration: 1,
+    })
+    gsap.to('.hours', {
+      scrollTrigger: '.hours',
+      y: 0,
+      opacity: 1,
+      start: 'top top',
+      duration: 1,
+      delay: 0.5,
+    })
+    gsap.to('.hours-img', {
+      scrollTrigger: '.hours-img',
+      opacity: 1,
+      x: 0,
+      start: 'top top',
+      delay: 1.2,
+      duration: 1,
+    })
+    gsap.to('.featured', {
+      scrollTrigger: '.featured',
+      y: 0,
+      opacity: 1,
+      start: 'top top',
+      duration: 1,
+      delay: 1.5,
+    })
+  },
   head() {
     const vendor = this.vendor
     return {
@@ -99,6 +142,10 @@ header {
   margin-bottom: 1em;
 }
 
+.header-details {
+  opacity: 0;
+}
+
 .headerImg {
   max-width: 100%;
   height: 100vh;
@@ -114,6 +161,29 @@ section {
   display: grid;
   place-items: center;
   grid-template-columns: 1fr 1fr;
+}
+
+.hours {
+  transform: translateY(100px);
+  opacity: 0;
+}
+
+.gallery {
+  display: grid;
+  grid-auto-flow: dense;
+  grid-template-columns: 150px 200px;
+  gap: 25px;
+}
+
+.img2 {
+  column-span: span 2;
+  margin-left: 15px;
+  /* justify-self: self-end; */
+}
+
+.hours-img {
+  transform: translateX(-50px);
+  opacity: 0;
 }
 
 .tagline {
@@ -161,6 +231,8 @@ ul {
 .featured {
   text-align: center;
   margin-bottom: 3em;
+  transform: translateY(100px);
+  opacity: 0;
 }
 
 .featured ul {
@@ -187,6 +259,15 @@ ul {
     opacity: 0.5;
     position: absolute;
     z-index: -1;
+  }
+
+  .details {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .gallery {
+    gap: 5px;
   }
 }
 </style>
