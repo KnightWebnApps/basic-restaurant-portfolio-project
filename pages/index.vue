@@ -87,13 +87,29 @@ export default {
       duration: 1,
       delay: 0.5,
     })
-    gsap.to('.hours-img', {
+    gsap.to('.img0', {
+      scrollTrigger: '.hours-img',
+      opacity: 1,
+      x: 0,
+      start: 'top top',
+      delay: 0.8,
+      duration: 1.2,
+    })
+    gsap.to('.img1', {
       scrollTrigger: '.hours-img',
       opacity: 1,
       x: 0,
       start: 'top top',
       delay: 1.2,
-      duration: 1,
+      duration: 1.5,
+    })
+    gsap.to('.img2', {
+      scrollTrigger: '.hours-img',
+      opacity: 1,
+      x: 0,
+      start: 'top top',
+      delay: 1.5,
+      duration: 1.5,
     })
     gsap.to('.featured', {
       scrollTrigger: '.featured',
@@ -101,7 +117,7 @@ export default {
       opacity: 1,
       start: 'top top',
       duration: 1,
-      delay: 1.5,
+      delay: 1.2,
     })
   },
   head() {

@@ -90,5 +90,6 @@ img {
   position: absolute;
   z-index: -1;
   overflow: hidden;
+  border-radius: 50%;
 }
 </style>
