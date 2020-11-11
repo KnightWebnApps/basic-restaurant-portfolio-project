@@ -1,6 +1,13 @@
 <template>
   <section class="container">
-    <h1>Menu</h1>
+    <header>
+      <h1>Menu</h1>
+      <p class="menu-desc">
+        We serve all dishes fresh from the grill, with locally sourced meats and
+        greens.
+      </p>
+      <hr />
+    </header>
     <ul class="product-list">
       <li v-for="product in products" :key="product._id">
         <NuxtLink :to="'/menu/' + product.slug.current">
@@ -76,6 +83,16 @@ a {
 
 a:visited {
   color: #333;
+}
+
+.menu-desc {
+  margin: 1em 0;
+  font-style: italic;
+}
+
+hr {
+  width: 100%;
+  margin: 2em 0 1em;
 }
 
 @media (max-width: 400px) {
