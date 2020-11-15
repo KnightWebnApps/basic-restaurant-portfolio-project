@@ -1,22 +1,8 @@
 <template>
   <div>
     <Nuxt />
-    <CallButton :phone="'5855904046'" />
-    <Footer />
   </div>
 </template>
-
-<script>
-import Footer from '~/components/Footer'
-import CallButton from '~/components/CallButton'
-
-export default {
-  components: {
-    Footer,
-    CallButton,
-  },
-}
-</script>
 
 <style>
 html {
