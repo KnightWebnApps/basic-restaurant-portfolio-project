@@ -19,7 +19,7 @@
       class="snipcart-add-item cart-btn"
       :data-item-id="product._id"
       :data-item-price="product.price"
-      :data-item-url="storeUrl"
+      :data-item-url="storeUrl + this.$route.path"
       :data-item-description="product.description"
       :data-item-image="imageUrl"
       :data-item-name="product.name"
