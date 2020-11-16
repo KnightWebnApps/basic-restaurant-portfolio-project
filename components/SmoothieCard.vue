@@ -19,7 +19,7 @@
       class="snipcart-add-item cart-btn"
       :data-item-id="product._id"
       :data-item-price="product.price"
-      :data-item-url="`${this.$route.fullPath}`"
+      :data-item-url="storeUrl"
       :data-item-description="product.description"
       :data-item-image="imageUrl"
       :data-item-name="product.name"
@@ -47,6 +47,11 @@ export default {
       type: Number,
       default: 0,
     },
+  },
+  data() {
+    return {
+      storeUrl: process.env.storeUrl,
+    }
   },
   computed: {
     imageUrl() {
