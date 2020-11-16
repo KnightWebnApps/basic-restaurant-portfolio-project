@@ -4,7 +4,7 @@
     <div
       id="snipcart"
       hidden
-      data-api-key="YjdiNWIyOTUtZTIyMy00MWMwLTkwNDUtMzI1M2M2NTgxYjE0"
+      data-api-key="YNTJlYWRkNGItOGU1ZS00ZjFhLTlhMmMtZDBkOWExYzBkZjQwNjM3NDEwNjc5MTIyNDYwODE2"
     ></div>
   </div>
 </template>
