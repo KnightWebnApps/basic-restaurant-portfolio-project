@@ -15,6 +15,11 @@
     <div class="bio" :v-if="product.body.en.length > 0">
       <BlockContent v-if="product.body" :blocks="product.body.en" />
     </div>
+    <CallButton
+      v-if="vendor.phoneNumber !== undefined"
+      :phone="vendor.phoneNumber"
+    />
+    <Footer :social="vendor.socialMedia || []" :name="vendor.name" />
   </section>
 </template>
 
@@ -26,7 +31,10 @@ import BlockContent from 'sanity-blocks-vue-component'
 import sanityClient from '~/sanityClient'
 import SanityImage from '~/components/SanityImage'
 import ProductPrice from '~/components/ProductPrice'
-const query = groq`*[_type == "product" && slug.current == $slug][0]`
+const query = groq`{
+  "product": *[_type == "product" && slug.current == $slug][0],
+  "vendor" : *[_type == "business"][0],
+}`
 
 export default {
   components: {
@@ -36,9 +44,7 @@ export default {
   },
   transition: 'in-out',
   async asyncData({ params }) {
-    return {
-      product: await sanityClient.fetch(query, params),
-    }
+    return await sanityClient.fetch(query, params)
   },
   mounted() {
     gsap.to('.content', { opacity: 1, duration: 0.6 })

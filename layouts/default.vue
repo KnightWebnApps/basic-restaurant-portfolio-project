@@ -1,6 +1,11 @@
 <template>
   <div>
     <Nuxt />
+    <div
+      id="snipcart"
+      hidden
+      data-api-key="YjdiNWIyOTUtZTIyMy00MWMwLTkwNDUtMzI1M2M2NTgxYjE0"
+    ></div>
   </div>
 </template>
 

@@ -4,9 +4,7 @@
       <header>
         <h1 class="name">{{ vendor.name }}</h1>
         <p class="tagline">{{ vendor.tagline }}</p>
-        <NuxtLink class="cta" to="/melissas-smoothies/menu">
-          See Our Smoothies
-        </NuxtLink>
+        <NuxtLink class="cta" to="/smoothys/menu"> See Our Smoothies </NuxtLink>
       </header>
       <section class="hours">
         <h2>Hours</h2>
@@ -91,6 +89,10 @@
         </a>
       </div> -->
     </section>
+    <CallButton
+      v-if="vendor.phoneNumber !== undefined"
+      :phone="vendor.phoneNumber"
+    />
     <Footer :social="vendor.socialMedia || []" :name="vendor.name" />
   </div>
 </template>
@@ -115,7 +117,10 @@ export default {
     Footer,
   },
   async asyncData() {
-    return await sanityClient.fetch(query)
+    return {
+      ...(await sanityClient.fetch(query)),
+      storeUrl: process.env.storeUrl,
+    }
   },
   mounted() {
     gsap.registerPlugin(ScrollTrigger)

@@ -47,6 +47,8 @@
       </ul>
       <NuxtLink to="/menu">See Full Menu</NuxtLink>
     </section>
+    <CallButton :phone="vendor.phoneNumber" />
+    <Footer :social="vendor.socialMedia || []" :name="vendor.name" />
   </div>
 </template>
 

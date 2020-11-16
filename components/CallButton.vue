@@ -33,7 +33,11 @@ a {
   /* z-index: 1; */
 }
 
-@media (min-width: 600px) {
+a:hover {
+  background-color: #fed047;
+}
+
+@media (min-width: 850px) {
   a {
     display: none;
   }

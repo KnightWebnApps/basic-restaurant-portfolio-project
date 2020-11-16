@@ -15,6 +15,11 @@
         </NuxtLink>
       </li>
     </ul>
+    <CallButton
+      v-if="vendor.phoneNumber !== undefined"
+      :phone="vendor.phoneNumber"
+    />
+    <Footer :social="vendor.socialMedia || []" :name="vendor.name" />
   </section>
 </template>
 
@@ -25,7 +30,8 @@ import sanityClient from '~/sanityClient'
 
 const query = groq`
 {
-  "products" : *[_type == "product"]
+  "products" : *[_type == "product"],
+  "vendor" : *[_type == "business"][0],
 }
 `
 

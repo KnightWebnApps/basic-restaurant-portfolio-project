@@ -1,7 +1,7 @@
 <template>
   <section>
     <h1 id="heading">
-      <NuxtLink to="/melissas-smoothies">&leftarrow;</NuxtLink>
+      <NuxtLink to="/smoothys">&leftarrow;</NuxtLink>
       Menu
     </h1>
     <ul>
@@ -9,41 +9,42 @@
         <SmoothieCard :product="product" />
       </li>
     </ul>
+    <CallButton
+      v-if="vendor.phoneNumber !== undefined"
+      :phone="vendor.phoneNumber"
+    />
+    <Footer :social="vendor.socialMedia || []" :name="vendor.name" />
   </section>
 </template>
 
 <script>
 import groq from 'groq'
 import sanityClient from '~/sanityClient'
-// import SanityImage from '~/components/SanityImage'
 import SmoothieCard from '~/components/SmoothieCard'
+import Footer from '~/components/Footer'
+import CallButton from '~/components/CallButton'
 
 const query = groq`
 {
- "products" : *[_type == "smoothie"]
+  "vendor" : *[_type == "business"][1],
+  "products" : *[_type == "smoothie"]
 }`
 
 export default {
   components: {
-    // SanityImage,
+    Footer,
+    CallButton,
     SmoothieCard,
   },
   async asyncData() {
     try {
-      return await sanityClient.fetch(query)
+      return {
+        ...(await sanityClient.fetch(query)),
+        storeUrl: process.env.storeUrl,
+      }
     } catch (error) {
       return { error }
     }
-  },
-  data() {
-    return {
-      isVisible: false,
-    }
-  },
-  methods: {
-    toggleDialog() {
-      this.isVisible ? (this.isVisible = false) : (this.isVisible = true)
-    },
   },
 }
 </script>
@@ -66,11 +67,27 @@ article {
 
 ul {
   padding: 0;
-  margin: 2em 0;
+  margin: 2em auto;
+  max-width: 800px;
   list-style: none;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   /* margin-bottom: 2em; */
   gap: 1em;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+  padding: 5px;
+}
+
+a:visited {
+  color: #333;
+}
+
+a:hover {
+  border: 1px solid #333;
+  border-radius: 7px;
 }
 </style>

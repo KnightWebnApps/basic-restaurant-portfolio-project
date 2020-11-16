@@ -4,17 +4,28 @@ export default {
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: 'web',
+    title: 'Knight Digital Development | Sample Business Pages',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon-32x32.png' }],
+    link: [
+      { rel: 'preconnect', href: 'https://app.snipcart.com' },
+      { rel: 'preconnect', href: 'https://cdn.snipcart.com' },
+      {
+        rel: 'stylesheet',
+        href: 'https://cdn.snipcart.com/themes/v3.0.16/default/snipcart.css',
+      },
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon-32x32.png' },
+    ],
+    script: [
+      { src: 'https://cdn.snipcart.com/themes/v3.0.16/default/snipcart.js' },
+    ],
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: [],
+  css: ['~/assets/main.css'],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: ['plugins/preview.client.js'],
@@ -39,6 +50,9 @@ export default {
   // Content module configuration (https://go.nuxtjs.dev/config-content)
   content: {},
 
+  env: {
+    storeUrl: process.env.STORE_URL || 'http://localhost:3000',
+  },
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
 }

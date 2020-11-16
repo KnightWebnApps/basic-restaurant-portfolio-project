@@ -15,12 +15,27 @@
         <SanityImage :width="48" :height="48" :image="ing.asset.asset" />
       </li>
     </ul>
+    <button
+      class="snipcart-add-item cart-btn"
+      :data-item-id="product._id"
+      :data-item-price="product.price"
+      :data-item-url="`${this.$route.fullPath}`"
+      :data-item-description="product.description"
+      :data-item-image="imageUrl"
+      :data-item-name="product.name"
+    >
+      Add To Cart
+    </button>
   </article>
 </template>
 
 <script>
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/dist/ScrollTrigger'
+/* eslint-disable vue/require-default-prop */
+import imageUrlBuilder from '@sanity/image-url'
+import sanityClient from '~/sanityClient'
+const builder = imageUrlBuilder(sanityClient)
 
 export default {
   props: {
@@ -31,6 +46,16 @@ export default {
     index: {
       type: Number,
       default: 0,
+    },
+  },
+  computed: {
+    imageUrl() {
+      return builder
+        .image(this.product.mainAsset.image)
+        .size(200, 200)
+        .auto('format')
+        .fit('max')
+        .url()
     },
   },
   mounted() {
@@ -79,5 +104,21 @@ ul {
   align-items: center;
   width: 150px;
   justify-content: space-between;
+}
+
+.cart-btn {
+  padding: 10px 15px;
+  border-radius: 7px;
+  background-color: #fed047;
+  font-weight: 500;
+  border: none;
+  width: 200px;
+  font-size: 17px;
+  margin-top: 1em;
+}
+
+.cart-btn:hover {
+  background-color: #c09e3a;
+  cursor: pointer;
 }
 </style>
