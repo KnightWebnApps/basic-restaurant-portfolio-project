@@ -1,6 +1,10 @@
 <template>
   <article id="content">
-    <h3 class="title">{{ product.name }}</h3>
+    <h3 class="title">
+      {{ product.name }} |
+      <i>${{ product.price.toFixed(2) }}</i>
+    </h3>
+    <small>{{ product.calories }} Cal.</small>
     <SanityImage
       :image="product.mainAsset.image"
       :width="200"
@@ -24,7 +28,7 @@
       :data-item-image="imageUrl"
       :data-item-name="product.name"
     >
-      Add To Cart
+      Add to Cart
     </button>
   </article>
 </template>
@@ -77,7 +81,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #content {
   /* margin-top: 1em; */
   background-color: aliceblue;
@@ -97,6 +101,10 @@ export default {
 
 .main-img {
   outline: 3px solid #333;
+}
+
+small {
+  margin-bottom: 1em;
 }
 
 ul {

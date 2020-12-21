@@ -1,7 +1,7 @@
 <template>
   <section>
     <h1 id="heading">
-      <NuxtLink to="/smoothys">&leftarrow;</NuxtLink>
+      <NuxtLink id="arrow" to="/smoothys">&leftarrow;</NuxtLink>
       Menu
     </h1>
     <ul>
@@ -80,6 +80,7 @@ a {
   color: #333;
   text-decoration: none;
   padding: 5px;
+  border: 1px solid transparent;
 }
 
 a:visited {
