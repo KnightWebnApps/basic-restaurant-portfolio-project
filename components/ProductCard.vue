@@ -35,6 +35,7 @@ export default {
 article {
   text-align: left;
   max-width: 256px;
+  padding: 15px 0;
 }
 
 .card-title {

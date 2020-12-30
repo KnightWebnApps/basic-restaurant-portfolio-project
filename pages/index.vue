@@ -17,7 +17,7 @@
       />
     </header>
     <section class="details">
-      <div>
+      <div class="glass">
         <h2>Hours</h2>
         <ul class="hours">
           <li v-for="date in vendor.hours" :key="date._key">
@@ -36,6 +36,19 @@
           :image="image"
           :class="'hours-img ' + `img${i}`"
         />
+      </div>
+    </section>
+    <section id="about">
+      <div class="glass details">
+        <div class="info">
+          <h2>About Us</h2>
+          <p>Over 20 years of business.</p>
+          <p>
+            Proud to serve the freshest quality, with the most robust flavor and
+            the cleanest kitchen in New York.
+          </p>
+        </div>
+        <img src="/chef_pablo.png" alt="Chef Pablo smiling for the camera" />
       </div>
     </section>
     <section id="feature" class="featured">
@@ -142,6 +155,7 @@ export default {
 
 <style scoped>
 .container {
+  overflow: hidden;
   margin: 0 auto;
   min-height: 100vh;
   display: flex;
@@ -186,6 +200,16 @@ section {
   opacity: 0;
 }
 
+.glass {
+  padding: 15px 25px;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 10px;
+  margin-bottom: 3em;
+}
+
 .gallery {
   display: grid;
   grid-auto-flow: dense;
@@ -201,6 +225,19 @@ section {
 .hours-img {
   transform: translateX(-50px);
   opacity: 0;
+}
+
+#about {
+  padding: 3em 25px 0;
+}
+
+#about p {
+  margin: 15px 0;
+}
+
+#about img {
+  /* width: 100%; */
+  margin: 0 auto;
 }
 
 .tagline {
@@ -280,6 +317,11 @@ ul {
     opacity: 0.5;
     position: absolute;
     z-index: -1;
+    width: 100%;
+  }
+
+  .tagline {
+    color: #272727;
   }
 
   .details {
