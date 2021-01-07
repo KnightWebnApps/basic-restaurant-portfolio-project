@@ -17,7 +17,7 @@
     "@sanity/client": "^2.0.1",
     "@sanity/image-url": "^0.140.19",
     "core-js": "^3.6.5",
-    "groq": "^2.0.1",
+    "groq": "^2.1.4",
     "gsap": "^3.5.1",
     "nuxt": "^2.14.6",
     "sanity-blocks-vue-component": "^0.1.0"
